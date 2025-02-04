@@ -13,9 +13,11 @@ class GuzzleHTTPClient implements HTTPClient
     protected $guzzleClient;
     protected $defaultHeaders;
 
-    public function __construct()
+    public function __construct($proxy = null)
     {
-        $this->guzzleClient = new Client();
+        $this->guzzleClient = new Client([
+            "proxy" => $proxy
+        ]);
         $this->defaultHeaders = [
             'User-Agent' => 'LINE-LINELogin-PHP',
         ];
