@@ -297,10 +297,12 @@ class LINELogin
      * @param Token $token
      * @return UserProfile
      */
-    public function getUserProfile(Token $token)
+    public function getUserProfile(Token $token, $endpointBase = null)
     {
+        $endpointBase = $endpointBase ?? $this->endpointBase;
+
         $response = $this->httpClient->get(
-            $this->endpointBase . '/v2/profile',
+            $endpointBase . '/v2/profile',
             [],
             [
                 'Authorization' => "Bearer {$token->getAccessToken()}",
